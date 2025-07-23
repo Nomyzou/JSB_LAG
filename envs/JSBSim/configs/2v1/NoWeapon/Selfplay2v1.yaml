@@ -1,0 +1,49 @@
+---
+task: hierarchical_multiplecombat
+
+# environment parameters
+map_name: new
+agent_conf: 2-1
+
+# scenario parameters
+episode_len: 800
+num_agents: 3
+
+# agent config
+ego_ids:
+  - A0100
+  - A0200
+enm_ids:
+  - B0100
+
+aircraft_configs:
+A0100:
+  color: Red
+  model: f16
+  init_state:
+    ic_h_sl_ft: 20000
+    ic_terrain_elevation_ft: 0
+    ic_long_gc_deg: 0
+    ic_lat_geod_deg: 0
+    ic_u_fps: 800
+    ic_psi_true_deg: 0
+A0200:
+  color: Red
+  model: f16
+  init_state:
+    ic_h_sl_ft: 20000
+    ic_terrain_elevation_ft: 0
+    ic_long_gc_deg: 1
+    ic_lat_geod_deg: 1
+    ic_u_fps: 800
+    ic_psi_true_deg: 180
+B0100:
+  color: Blue
+  model: f16
+  init_state:
+    ic_h_sl_ft: 20000
+    ic_terrain_elevation_ft: 0
+    ic_long_gc_deg: 1
+    ic_lat_geod_deg: 0
+    ic_u_fps: 800
+    ic_psi_true_deg: 180 
