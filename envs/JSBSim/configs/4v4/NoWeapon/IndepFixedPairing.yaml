@@ -6,7 +6,7 @@ sim_freq: 60
 agent_interaction_steps: 12 # step 0.2s
 
 # termination config
-max_steps: 2000
+max_steps: 4000
 altitude_limit: 2500
 acceleration_limit_x: 10.0
 acceleration_limit_y: 10.0
@@ -30,7 +30,7 @@ aircraft_configs: {
     model: f16,
     init_state: {
       ic_long_gc_deg: 120.0,
-      ic_lat_geod_deg: 59.95,
+      ic_lat_geod_deg: 59.85,
       ic_h_sl_ft: 20000,
       ic_psi_true_deg: 0.0,
       ic_u_fps: 800.0,
@@ -40,7 +40,7 @@ aircraft_configs: {
     color: Red,
     model: f16,
     init_state: {
-      ic_long_gc_deg: 119.95,
+      ic_long_gc_deg: 119.85,
       ic_lat_geod_deg: 60.0,
       ic_h_sl_ft: 20000,
       ic_psi_true_deg: 0.0,
@@ -51,8 +51,8 @@ aircraft_configs: {
     color: Red,
     model: f16,
     init_state: {
-      ic_long_gc_deg: 119.95,
-      ic_lat_geod_deg: 59.95,
+      ic_long_gc_deg: 119.85,
+      ic_lat_geod_deg: 59.85,
       ic_h_sl_ft: 20000,
       ic_psi_true_deg: 0.0,
       ic_u_fps: 800.0,
@@ -63,7 +63,7 @@ aircraft_configs: {
     model: f16,
     init_state: {
       ic_h_sl_ft: 20000,
-      ic_lat_geod_deg: 60.15,
+      ic_lat_geod_deg: 60.45,
       ic_long_gc_deg: 120.0,
       ic_psi_true_deg: 180.0,
       ic_u_fps: 800.0,
@@ -96,7 +96,7 @@ aircraft_configs: {
     model: f16,
     init_state: {
       ic_h_sl_ft: 20000,
-      ic_lat_geod_deg: 60.10,
+      ic_lat_geod_deg: 60.30,
       ic_long_gc_deg: 119.95,
       ic_psi_true_deg: 180.0,
       ic_u_fps: 800.0,

@@ -51,6 +51,10 @@ class PPOActor(nn.Module):
         actor_features = self.base(obs)
 
         if self.use_recurrent_policy:
+            # When processing a single agent's data, the output of self.base might be 1D.
+            # We ensure it's a 2D tensor [1, dim] before passing it to the RNN.
+            if len(actor_features.shape) == 1:
+                actor_features = actor_features.unsqueeze(0)
             actor_features, rnn_states = self.rnn(actor_features, rnn_states, masks)
 
         if self.use_prior:

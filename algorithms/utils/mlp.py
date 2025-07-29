@@ -33,16 +33,21 @@ class MLPBase(nn.Module):
         self._hidden_size = hidden_size
         self._activation_id = activation_id
         self._use_feature_normalization = use_feature_normalization
-
+        
         self.obs_flattener = build_flattener(obs_space)
-        input_dim = self.obs_flattener.size
+        input_dim = int(self.obs_flattener.size)
         if self._use_feature_normalization:
             self.feature_norm = nn.LayerNorm(input_dim)
+        
         self.mlp = MLPLayer(input_dim, self._hidden_size, self._activation_id)
 
-    def forward(self, x: torch.Tensor):
+    def forward(self, x):
+        x = self.obs_flattener(x)
+        x = torch.from_numpy(x).float().to(self.mlp.fc[0].weight.device)
+        
         if self._use_feature_normalization:
             x = self.feature_norm(x)
+        
         x = self.mlp(x)
         return x
 

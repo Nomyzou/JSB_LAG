@@ -84,6 +84,9 @@ class BoxFlattener():
         self.size = np.product(ori_space.shape)
 
     def __call__(self, observation):
+        # Ensure the observation is on the CPU before converting to numpy
+        if hasattr(observation, 'cpu'):
+            observation = observation.cpu()
         array = np.array(observation, copy=False)
         if array.size // self.size == 1:
             return array.ravel()
