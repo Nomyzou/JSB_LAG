@@ -1,0 +1,16 @@
+{"time":"2025-08-07T15:38:23.131722+08:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/Users/zoumaoming/LAG/scripts/results/MAPPOTraining2v1/2v1/NoWeapon/MAPPOTraining/mappo/v1_2v1_mappo_training/wandb/offline-run-20250807_153822-5v3leucu/logs/debug-core.log"}
+{"time":"2025-08-07T15:38:23.339754+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2025-08-07T15:38:23.339919+08:00","level":"INFO","msg":"stream: created new stream","id":"5v3leucu"}
+{"time":"2025-08-07T15:38:23.33995+08:00","level":"INFO","msg":"stream: started","id":"5v3leucu"}
+{"time":"2025-08-07T15:38:23.339968+08:00","level":"INFO","msg":"sender: started","stream_id":"5v3leucu"}
+{"time":"2025-08-07T15:38:23.339977+08:00","level":"INFO","msg":"handler: started","stream_id":"5v3leucu"}
+{"time":"2025-08-07T15:38:23.340012+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"5v3leucu"}
+{"time":"2025-08-07T15:38:23.343283+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-08-07T15:38:26.090001+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-08-07T15:38:26.090036+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-08-07T15:38:26.090469+08:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-08-07T15:38:26.091804+08:00","level":"INFO","msg":"stream: closing","id":"5v3leucu"}
+{"time":"2025-08-07T15:38:26.091812+08:00","level":"INFO","msg":"handler: closed","stream_id":"5v3leucu"}
+{"time":"2025-08-07T15:38:26.09182+08:00","level":"INFO","msg":"sender: closed","stream_id":"5v3leucu"}
+{"time":"2025-08-07T15:38:26.09183+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"5v3leucu"}
+{"time":"2025-08-07T15:38:26.091986+08:00","level":"INFO","msg":"stream: closed","id":"5v3leucu"}

@@ -1,0 +1,21 @@
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_setup.py:_flush():80] Current SDK version is 0.21.0
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_setup.py:_flush():80] Configure stats pid to 2607852
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_setup.py:_flush():80] Loading settings from /home/zmm/.config/wandb/settings
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_setup.py:_flush():80] Loading settings from /home/zmm/LAG/scripts/wandb/settings
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /home/zmm/LAG/scripts/results/SingleCombat/1v1/NoWeapon/vsBaseline/ppo/v1/wandb/offline-run-20250722_111712-o1zaozod/logs/debug.log
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /home/zmm/LAG/scripts/results/SingleCombat/1v1/NoWeapon/vsBaseline/ppo/v1/wandb/offline-run-20250722_111712-o1zaozod/logs/debug-internal.log
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_init.py:init():830] calling init triggers
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_init.py:init():835] wandb.init called with sweep_config: {}
+config: {'env_name': 'SingleCombat', 'algorithm_name': 'ppo', 'experiment_name': 'v1', 'seed': 1, 'cuda': True, 'n_training_threads': 1, 'n_rollout_threads': 32, 'num_env_steps': 100000000.0, 'model_dir': None, 'use_wandb': True, 'user_name': 'jyh', 'wandb_name': 'thu_jsbsim', 'gamma': 0.99, 'buffer_size': 3000, 'use_proper_time_limits': False, 'use_gae': True, 'gae_lambda': 0.95, 'hidden_size': '128 128', 'act_hidden_size': '128 128', 'activation_id': 1, 'use_feature_normalization': False, 'gain': 0.01, 'use_prior': False, 'use_recurrent_policy': True, 'recurrent_hidden_size': 128, 'recurrent_hidden_layers': 1, 'data_chunk_length': 8, 'lr': 0.0003, 'ppo_epoch': 4, 'clip_param': 0.2, 'use_clipped_value_loss': False, 'num_mini_batch': 5, 'value_loss_coef': 1, 'entropy_coef': 0.001, 'use_max_grad_norm': True, 'max_grad_norm': 2.0, 'use_selfplay': False, 'selfplay_algorithm': 'sp', 'n_choose_opponents': 1, 'init_elo': 1000.0, 'save_interval': 1, 'log_interval': 1, 'use_eval': False, 'n_eval_rollout_threads': 1, 'eval_interval': 25, 'eval_episodes': 32, 'render_opponent_index': 'latest', 'render_index': 'latest', 'scenario_name': '1v1/NoWeapon/vsBaseline', 'render_mode': 'txt', '_wandb': {}}
+2025-07-22 11:17:12,993 INFO    MainThread:2607852 [wandb_init.py:init():871] starting backend
+2025-07-22 11:17:13,200 INFO    MainThread:2607852 [wandb_init.py:init():874] sending inform_init request
+2025-07-22 11:17:13,213 INFO    MainThread:2607852 [wandb_init.py:init():882] backend started and connected
+2025-07-22 11:17:13,214 INFO    MainThread:2607852 [wandb_init.py:init():953] updated telemetry
+2025-07-22 11:17:13,219 INFO    MainThread:2607852 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout
+2025-07-22 11:17:13,343 INFO    MainThread:2607852 [wandb_init.py:init():1029] starting run threads in backend
+2025-07-22 11:17:13,366 INFO    MainThread:2607852 [wandb_run.py:_console_start():2458] atexit reg
+2025-07-22 11:17:13,366 INFO    MainThread:2607852 [wandb_run.py:_redirect():2306] redirect: wrap_raw
+2025-07-22 11:17:13,366 INFO    MainThread:2607852 [wandb_run.py:_redirect():2375] Wrapping output streams.
+2025-07-22 11:17:13,366 INFO    MainThread:2607852 [wandb_run.py:_redirect():2398] Redirects installed.
+2025-07-22 11:17:13,366 INFO    MainThread:2607852 [wandb_init.py:init():1075] run started, returning control to user process

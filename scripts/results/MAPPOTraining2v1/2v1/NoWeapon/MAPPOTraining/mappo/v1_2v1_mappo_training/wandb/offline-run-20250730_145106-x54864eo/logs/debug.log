@@ -1,0 +1,22 @@
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_setup.py:_flush():81] Current SDK version is 0.20.1
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_setup.py:_flush():81] Configure stats pid to 8274
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_setup.py:_flush():81] Loading settings from /Users/zoumaoming/.config/wandb/settings
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_setup.py:_flush():81] Loading settings from /Users/zoumaoming/LAG/wandb/settings
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_setup.py:_flush():81] Loading settings from environment variables
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /Users/zoumaoming/LAG/scripts/results/MAPPOTraining2v1/2v1/NoWeapon/MAPPOTraining/mappo/v1_2v1_mappo_training/wandb/offline-run-20250730_145106-x54864eo/logs/debug.log
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /Users/zoumaoming/LAG/scripts/results/MAPPOTraining2v1/2v1/NoWeapon/MAPPOTraining/mappo/v1_2v1_mappo_training/wandb/offline-run-20250730_145106-x54864eo/logs/debug-internal.log
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_init.py:init():831] calling init triggers
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_init.py:init():836] wandb.init called with sweep_config: {}
+config: {'env_name': 'MAPPOTraining2v1', 'algorithm_name': 'mappo', 'experiment_name': 'v1_2v1_mappo_training', 'seed': 0, 'cuda': True, 'n_training_threads': 1, 'n_rollout_threads': 4, 'num_env_steps': 10000000.0, 'model_dir': None, 'use_wandb': True, 'user_name': 'liuqh', 'wandb_name': 'liuqh', 'gamma': 0.99, 'buffer_size': 200, 'use_proper_time_limits': False, 'use_gae': True, 'gae_lambda': 0.95, 'hidden_size': '128 128', 'act_hidden_size': '128 128', 'activation_id': 1, 'use_feature_normalization': False, 'gain': 0.01, 'use_prior': False, 'use_recurrent_policy': True, 'recurrent_hidden_size': 128, 'recurrent_hidden_layers': 1, 'data_chunk_length': 10, 'lr': 0.0005, 'ppo_epoch': 10, 'clip_param': 0.2, 'use_clipped_value_loss': False, 'num_mini_batch': 1, 'value_loss_coef': 1, 'entropy_coef': 0.01, 'use_max_grad_norm': True, 'max_grad_norm': 2, 'use_selfplay': False, 'selfplay_algorithm': 'sp', 'n_choose_opponents': 1, 'init_elo': 1000.0, 'save_interval': 100, 'log_interval': 1, 'use_eval': False, 'n_eval_rollout_threads': 1, 'eval_interval': 25, 'eval_episodes': 32, 'render_opponent_index': 'latest', 'render_index': 'latest', 'scenario_name': '2v1/NoWeapon/MAPPOTraining', 'render_mode': 'txt', '_wandb': {}}
+2025-07-30 14:51:06,672 INFO    MainThread:8274 [wandb_init.py:init():872] starting backend
+2025-07-30 14:51:07,085 INFO    MainThread:8274 [wandb_init.py:init():875] sending inform_init request
+2025-07-30 14:51:07,099 INFO    MainThread:8274 [wandb_init.py:init():883] backend started and connected
+2025-07-30 14:51:07,101 INFO    MainThread:8274 [wandb_init.py:init():956] updated telemetry
+2025-07-30 14:51:07,116 INFO    MainThread:8274 [wandb_init.py:init():980] communicating run to backend with 90.0 second timeout
+2025-07-30 14:51:07,239 INFO    MainThread:8274 [wandb_init.py:init():1032] starting run threads in backend
+2025-07-30 14:51:07,294 INFO    MainThread:8274 [wandb_run.py:_console_start():2453] atexit reg
+2025-07-30 14:51:07,294 INFO    MainThread:8274 [wandb_run.py:_redirect():2301] redirect: wrap_raw
+2025-07-30 14:51:07,294 INFO    MainThread:8274 [wandb_run.py:_redirect():2370] Wrapping output streams.
+2025-07-30 14:51:07,294 INFO    MainThread:8274 [wandb_run.py:_redirect():2393] Redirects installed.
+2025-07-30 14:51:07,296 INFO    MainThread:8274 [wandb_init.py:init():1078] run started, returning control to user process
+2025-07-30 14:51:09,244 INFO    MsgRouterThr:8274 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 0 handles.

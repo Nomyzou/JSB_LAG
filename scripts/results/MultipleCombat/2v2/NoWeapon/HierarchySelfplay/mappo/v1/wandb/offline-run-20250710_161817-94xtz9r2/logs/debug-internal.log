@@ -1,0 +1,16 @@
+{"time":"2025-07-10T16:18:17.602704+08:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/Users/zoumaoming/LAG/scripts/results/MultipleCombat/2v2/NoWeapon/HierarchySelfplay/mappo/v1/wandb/offline-run-20250710_161817-94xtz9r2/logs/debug-core.log"}
+{"time":"2025-07-10T16:18:17.712352+08:00","level":"WARN","msg":"GraphQL client is nil, skipping feature loading"}
+{"time":"2025-07-10T16:18:17.712909+08:00","level":"INFO","msg":"stream: created new stream","id":"94xtz9r2"}
+{"time":"2025-07-10T16:18:17.712945+08:00","level":"INFO","msg":"stream: started","id":"94xtz9r2"}
+{"time":"2025-07-10T16:18:17.712979+08:00","level":"INFO","msg":"handler: started","stream_id":"94xtz9r2"}
+{"time":"2025-07-10T16:18:17.713094+08:00","level":"INFO","msg":"sender: started","stream_id":"94xtz9r2"}
+{"time":"2025-07-10T16:18:17.713112+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"94xtz9r2"}
+{"time":"2025-07-10T16:18:17.718568+08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-07-10T16:57:21.209859+08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-07-10T16:57:21.212116+08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-07-10T16:57:21.225872+08:00","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2025-07-10T16:57:21.378161+08:00","level":"INFO","msg":"stream: closing","id":"94xtz9r2"}
+{"time":"2025-07-10T16:57:21.379365+08:00","level":"INFO","msg":"handler: closed","stream_id":"94xtz9r2"}
+{"time":"2025-07-10T16:57:21.395785+08:00","level":"INFO","msg":"sender: closed","stream_id":"94xtz9r2"}
+{"time":"2025-07-10T16:57:21.394565+08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"94xtz9r2"}
+{"time":"2025-07-10T16:57:21.395921+08:00","level":"INFO","msg":"stream: closed","id":"94xtz9r2"}

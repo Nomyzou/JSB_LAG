@@ -1,0 +1,93 @@
+{
+  "os":  "macOS-14.2-arm64-arm-64bit",
+  "python":  "CPython 3.8.20",
+  "startedAt":  "2025-08-07T08:50:42.725850Z",
+  "args":  [
+    "--env-name",
+    "MAPPOTraining2v1",
+    "--algorithm-name",
+    "mappo",
+    "--scenario-name",
+    "2v1/NoWeapon/MAPPOTraining",
+    "--experiment-name",
+    "v1_2v1_mappo_training",
+    "--seed",
+    "0",
+    "--n-training-threads",
+    "1",
+    "--n-rollout-threads",
+    "4",
+    "--cuda",
+    "--num-env-steps",
+    "10000000",
+    "--episode-length",
+    "1000",
+    "--num-mini-batch",
+    "1",
+    "--ppo-epoch",
+    "10",
+    "--seed",
+    "0",
+    "--cuda",
+    "--log-interval",
+    "1",
+    "--save-interval",
+    "100",
+    "--use-wandb",
+    "False",
+    "--use-max-grad-norm",
+    "--max-grad-norm",
+    "0.5",
+    "--clip-param",
+    "0.2",
+    "--use-clipped-value-loss",
+    "--value-loss-coef",
+    "0.5",
+    "--entropy-coef",
+    "0.01",
+    "--lr",
+    "3e-4",
+    "--gae-lambda",
+    "0.95",
+    "--gamma",
+    "0.99"
+  ],
+  "program":  "scripts/train/train_jsbsim.py",
+  "codePath":  "scripts/train/train_jsbsim.py",
+  "git":  {
+    "remote":  "https://Nomyzou:@github.com/Nomyzou/JSB_LAG.git",
+    "commit":  "f173c01bcca62f613f5955e0c56c37063781b1a0"
+  },
+  "root":  "/Users/zoumaoming/LAG/scripts/results/MAPPOTraining2v1/2v1/NoWeapon/MAPPOTraining/mappo/v1_2v1_mappo_training",
+  "host":  "zoumaomingdebijibendiannao.local",
+  "executable":  "/opt/anaconda3/envs/jsbsim1/bin/python",
+  "codePathLocal":  "scripts/train/train_jsbsim.py",
+  "cpu_count":  8,
+  "cpu_count_logical":  8,
+  "disk":  {
+    "/":  {
+      "total":  "245107195904",
+      "used":  "191311736832"
+    },
+    "/System/Volumes/Data":  {
+      "total":  "245107195904",
+      "used":  "191311736832"
+    }
+  },
+  "memory":  {
+    "total":  "17179869184"
+  },
+  "cpu":  {
+    "count":  8,
+    "countLogical":  8
+  },
+  "apple":  {
+    "name":  "Apple M2",
+    "ecpuCores":  4,
+    "pcpuCores":  4,
+    "gpuCores":  10,
+    "memoryGb":  16,
+    "swapTotalBytes":  "16106127360",
+    "ramTotalBytes":  "17179869184"
+  }
+}
