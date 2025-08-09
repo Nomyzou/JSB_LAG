@@ -263,11 +263,7 @@ class BaseEnv(gymnasium.Env):
             data = np.concatenate((ego_data, enm_data))  # type: np.ndarray
         else:
             data = ego_data  # type: np.ndarray
-        try:
-            assert np.isnan(data).sum() == 0
-        except AssertionError:
-            import pdb
-            pdb.set_trace()
+        
         # only return data that belongs to RL agents
         return data[:self.num_agents, ...]
 

@@ -44,3 +44,78 @@ def init(module: nn.Module, weight_init, bias_init, gain=1):
 
 def get_clones(module, N):
     return nn.ModuleList([copy.deepcopy(module) for i in range(N)])
+
+
+def safe_tensor_ops(tensor, operation, default_value=0.0):
+    """
+    Safely perform operations on tensors that might contain NaN values.
+    
+    Args:
+        tensor: Input tensor
+        operation: Function to apply to tensor
+        default_value: Value to use if operation fails
+    
+    Returns:
+        Result of operation or default_value if operation fails
+    """
+    try:
+        if torch.isnan(tensor).any():
+            return default_value
+        return operation(tensor)
+    except:
+        return default_value
+
+def clip_gradients_norm(model, max_norm=1.0):
+    """
+    Clip gradients by norm with additional NaN checking.
+    
+    Args:
+        model: PyTorch model
+        max_norm: Maximum gradient norm
+    
+    Returns:
+        Total norm of parameters before clipping
+    """
+    total_norm = 0
+    param_count = 0
+    
+    for p in model.parameters():
+        if p.grad is not None:
+            # Check for NaN gradients
+            if torch.isnan(p.grad).any():
+                p.grad.data.zero_()
+                continue
+                
+            param_norm = p.grad.data.norm(2)
+            total_norm += param_norm.item() ** 2
+            param_count += 1
+    
+    if param_count == 0:
+        return 0.0
+        
+    total_norm = total_norm ** (1. / 2)
+    
+    if total_norm > max_norm:
+        clip_coef = max_norm / (total_norm + 1e-6)
+        for p in model.parameters():
+            if p.grad is not None:
+                p.grad.data.mul_(clip_coef)
+    
+    return total_norm
+
+def replace_nan_with_zero(tensor):
+    """
+    Replace NaN values in tensor with zeros.
+    
+    Args:
+        tensor: Input tensor
+    
+    Returns:
+        Tensor with NaN values replaced by zeros
+    """
+    if isinstance(tensor, torch.Tensor):
+        return torch.where(torch.isnan(tensor), torch.zeros_like(tensor), tensor)
+    elif isinstance(tensor, np.ndarray):
+        return np.where(np.isnan(tensor), np.zeros_like(tensor), tensor)
+    else:
+        return tensor

@@ -1,0 +1,70 @@
+# 2v1 MAPPO Training Configuration
+# Red team: 2 aircraft using MAPPO training
+# Blue team: 1 aircraft using pre-trained 1v1 model
+
+task: mappo_2v1_training
+
+# Aircraft configuration
+aircraft_configs:
+  A0100:
+    type: "f16"
+    color: "Red"
+    init_state:
+      ic_long_gc_deg: 120.0
+      ic_lat_geod_deg: 60.0
+      ic_h_sl_ft: 16404.2 # 5000 meters
+      ic_psi_true_deg: 0.0
+      ic_theta_deg: 0.0
+      ic_phi_deg: 0.0
+      ic_vc_kts: 388.8 # 200 m/s
+  A0200:
+    type: "f16"
+    color: "Red"
+    init_state:
+      ic_long_gc_deg: 120.1 # Reduced separation from A0100
+      ic_lat_geod_deg: 60.0
+      ic_h_sl_ft: 16404.2 # 5000 meters
+      ic_psi_true_deg: 0.0
+      ic_theta_deg: 0.0
+      ic_phi_deg: 0.0
+      ic_vc_kts: 388.8 # 200 m/s
+  B0100:
+    type: "f16"
+    color: "Blue"
+    init_state:
+      ic_long_gc_deg: 119.8 # Significantly increased separation from Red team
+      ic_lat_geod_deg: 60.0
+      ic_h_sl_ft: 16404.2 # 5000 meters
+      ic_psi_true_deg: 180.0
+      ic_theta_deg: 0.0
+      ic_phi_deg: 0.0
+      ic_vc_kts: 388.8 # 200 m/s
+    # Link to the pre-trained model for this specific agent
+    pretrained_model_path: "results/SingleCombat/1v1/NoWeapon/Selfplay/ppo/v1_selfplay_from_baseline/run3/actor_latest.pt"
+
+# Environment settings
+env:
+  agent_num: 3  # 2 red + 1 blue
+  max_steps: 1000
+  control_dt: 0.2
+  render_mode: "txt"
+  
+simulation:
+  device: "cpu"
+  sim_freq: 60
+  agent_interaction_freq: 12
+
+# Reward configuration
+reward:
+  type: "event_driven"
+  win_reward: 1000
+  lose_reward: -1000
+  survival_reward: 1.0
+  damage_reward: -100
+
+# Termination conditions
+termination:
+  max_time: 200.0  # 200 seconds
+  min_altitude: 100.0
+  max_altitude: 60000.0 # Increased from 15000.0 to a safe value
+  max_distance: 50000.0 

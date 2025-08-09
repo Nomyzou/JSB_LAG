@@ -105,11 +105,32 @@ class SingleCombatTask(BaseTask):
         norm_obs = np.zeros(15)
         ego_obs_list = np.array(env.agents[agent_id].get_property_values(self.state_var))
         enm_obs_list = np.array(env.agents[agent_id].enemies[0].get_property_values(self.state_var))
+        
+        # NaN 检查：原始状态数据
+        if np.isnan(ego_obs_list).any():
+            print(f'[1v1 NaN DEBUG] ego_obs_list has NaN: {ego_obs_list}')
+        if np.isnan(enm_obs_list).any():
+            print(f'[1v1 NaN DEBUG] enm_obs_list has NaN: {enm_obs_list}')
+        
         # (0) extract feature: [north(km), east(km), down(km), v_n(mh), v_e(mh), v_d(mh)]
         ego_cur_ned = LLA2NEU(*ego_obs_list[:3], env.center_lon, env.center_lat, env.center_alt)
         enm_cur_ned = LLA2NEU(*enm_obs_list[:3], env.center_lon, env.center_lat, env.center_alt)
+        
+        # NaN 检查：LLA2NEU 转换后
+        if np.isnan(ego_cur_ned).any():
+            print(f'[1v1 NaN DEBUG] ego_cur_ned has NaN: {ego_cur_ned}')
+        if np.isnan(enm_cur_ned).any():
+            print(f'[1v1 NaN DEBUG] enm_cur_ned has NaN: {enm_cur_ned}')
+        
         ego_feature = np.array([*ego_cur_ned, *(ego_obs_list[6:9])])
         enm_feature = np.array([*enm_cur_ned, *(enm_obs_list[6:9])])
+        
+        # NaN 检查：特征向量
+        if np.isnan(ego_feature).any():
+            print(f'[1v1 NaN DEBUG] ego_feature has NaN: {ego_feature}')
+        if np.isnan(enm_feature).any():
+            print(f'[1v1 NaN DEBUG] enm_feature has NaN: {enm_feature}')
+        
         # (1) ego info normalization
         norm_obs[0] = ego_obs_list[2] / 5000            # 0. ego altitude   (unit: 5km)
         norm_obs[1] = np.sin(ego_obs_list[3])           # 1. ego_roll_sin
@@ -128,7 +149,20 @@ class SingleCombatTask(BaseTask):
         norm_obs[12] = ego_TA
         norm_obs[13] = R / 10000
         norm_obs[14] = side_flag
+        
+        # NaN 检查：最终观测
+        if np.isnan(norm_obs).any():
+            print(f'[1v1 NaN DEBUG] norm_obs has NaN: {norm_obs}')
+            print(f'[1v1 NaN DEBUG] ego_AO: {ego_AO}, ego_TA: {ego_TA}, R: {R}, side_flag: {side_flag}')
+        
         norm_obs = np.clip(norm_obs, self.observation_space.low, self.observation_space.high)
+        
+        # 最终统计信息
+        if np.isnan(norm_obs).any():
+            print(f'[1v1 NaN DEBUG] Final norm_obs has NaN after clip: {norm_obs}')
+        else:
+            print(f'[1v1 DEBUG] norm_obs stats - min: {np.min(norm_obs):.4f}, max: {np.max(norm_obs):.4f}, mean: {np.mean(norm_obs):.4f}')
+        
         return norm_obs
 
     def normalize_action(self, env, agent_id, action):

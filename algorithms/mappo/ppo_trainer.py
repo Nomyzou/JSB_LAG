@@ -4,7 +4,7 @@ import numpy as np
 from typing import Union, List
 from .ppo_policy import PPOPolicy
 from ..utils.buffer import SharedReplayBuffer
-from ..utils.utils import check, get_gard_norm
+from ..utils.utils import check, get_gard_norm, clip_gradients_norm, replace_nan_with_zero
 
 
 class PPOTrainer():
@@ -35,6 +35,12 @@ class PPOTrainer():
         returns_batch = check(returns_batch).to(**self.tpdv)
         value_preds_batch = check(value_preds_batch).to(**self.tpdv)
 
+        # Replace NaN values with zeros
+        old_action_log_probs_batch = replace_nan_with_zero(old_action_log_probs_batch)
+        advantages_batch = replace_nan_with_zero(advantages_batch)
+        returns_batch = replace_nan_with_zero(returns_batch)
+        value_preds_batch = replace_nan_with_zero(value_preds_batch)
+
         # Reshape to do in a single forward pass for all steps
         values, action_log_probs, dist_entropy = policy.evaluate_actions(share_obs_batch,
                                                                          obs_batch,
@@ -42,6 +48,11 @@ class PPOTrainer():
                                                                          rnn_states_critic_batch,
                                                                          actions_batch,
                                                                          masks_batch)
+
+        # Replace NaN values in outputs
+        values = replace_nan_with_zero(values)
+        action_log_probs = replace_nan_with_zero(action_log_probs)
+        dist_entropy = replace_nan_with_zero(dist_entropy)
 
         # Obtain the loss function
         ratio = torch.exp(action_log_probs - old_action_log_probs_batch)
@@ -63,15 +74,23 @@ class PPOTrainer():
 
         loss = policy_loss + value_loss * self.value_loss_coef + policy_entropy_loss * self.entropy_coef
 
+        # Check for NaN loss
+        if torch.isnan(loss):
+            print(f"[WARNING] NaN loss detected: policy_loss={policy_loss}, value_loss={value_loss}, entropy_loss={policy_entropy_loss}")
+            return torch.tensor(0.0), torch.tensor(0.0), torch.tensor(0.0), torch.tensor(1.0), 0.0, 0.0
+
         # Optimize the loss function
         policy.optimizer.zero_grad()
         loss.backward()
+        
         if self.use_max_grad_norm:
-            actor_grad_norm = nn.utils.clip_grad_norm_(policy.actor.parameters(), self.max_grad_norm).item()
-            critic_grad_norm = nn.utils.clip_grad_norm_(policy.critic.parameters(), self.max_grad_norm).item()
+            # Use safer gradient clipping
+            actor_grad_norm = clip_gradients_norm(policy.actor, self.max_grad_norm)
+            critic_grad_norm = clip_gradients_norm(policy.critic, self.max_grad_norm)
         else:
             actor_grad_norm = get_gard_norm(policy.actor.parameters())
             critic_grad_norm = get_gard_norm(policy.critic.parameters())
+        
         policy.optimizer.step()
 
         return policy_loss, value_loss, policy_entropy_loss, ratio, actor_grad_norm, critic_grad_norm

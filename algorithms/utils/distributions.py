@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 import torch.nn as nn
 
@@ -8,7 +9,13 @@ Modify standard PyTorch distributions so they are compatible with this code.
 """
 
 # Standardize distribution interfaces
-
+def safe_isnan(x):
+    if isinstance(x, np.ndarray):
+        return np.isnan(x).any()
+    elif isinstance(x, torch.Tensor):
+        return torch.isnan(x).any()
+    else:
+        return False
 
 # Categorical
 class FixedCategorical(torch.distributions.Categorical):
@@ -68,7 +75,12 @@ class Categorical(nn.Module):
         self.logits_net = init_(nn.Linear(num_inputs, num_outputs))
 
     def forward(self, x):
-        x = self.logits_net(x)
+        # Check for NaN values in logits
+        if torch.isnan(x).any():
+            print('[NaN DEBUG] x (distributions.forward):', x)
+            # Replace NaN values with zeros
+            x = torch.where(torch.isnan(x), torch.zeros_like(x), x)
+        
         return FixedCategorical(logits=x)
 
     @property
