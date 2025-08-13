@@ -92,6 +92,7 @@ def main():
     parser.add_argument("--output", type=str, default="2v1_mappo_render.txt.acmi", help="Output ACMI filename")
     parser.add_argument("--scenario", type=str, default="2v1/NoWeapon/MAPPOTraining", help="Scenario name for the environment")
     parser.add_argument("--no-static", action="store_true", help="Do not add static objects to ACMI")
+    parser.add_argument("--target-steps", type=int, default=400, help="Target number of steps to render (default: 400)")
     args_cli = parser.parse_args()
     
     RENDER = True
@@ -99,6 +100,7 @@ def main():
     OUTPUT_FILENAME = args_cli.output
     ADD_STATIC_OBJECTS = not args_cli.no_static
     SCENARIO = args_cli.scenario
+    TARGET_STEPS = args_cli.target_steps
     
     # Determine model path with fallback
     def pick_latest_model(base_dir: str) -> str:
@@ -173,7 +175,7 @@ def main():
     episode_rewards = 0
     
     step_count = 0
-    max_steps = 1000  # Safety limit
+    max_steps = TARGET_STEPS  # Target number of steps
     
     while step_count < max_steps:
         step_count += 1
@@ -205,8 +207,18 @@ def main():
         
         # Check if episode is done
         if dones.all():
-            logging.info("Episode finished.")
+            logging.info(f"Episode finished at step {step_count}.")
             logging.info(f"Final Info: {infos}")
+            # Continue rendering to reach target steps even if episode is done
+            if step_count < max_steps:
+                logging.info(f"Continuing to render until step {max_steps}...")
+                # Keep rendering the final state for remaining steps
+                for remaining_step in range(step_count + 1, max_steps + 1):
+                    if RENDER:
+                        env.render(mode='txt', filepath=OUTPUT_FILENAME)
+                    step_count = remaining_step
+                    if remaining_step % 50 == 0:
+                        logging.info(f"Extended render step: {remaining_step}")
             break
         
         # Log progress
@@ -214,6 +226,7 @@ def main():
             bloods = [env.agents[agent_id].bloods for agent_id in env.agents.keys()]
             logging.info(f"Step: {step_count}, Health: {bloods}")
     
+    logging.info(f"Total steps rendered: {step_count}")
     logging.info(f"Total Episode Rewards: {episode_rewards.sum()}")
     logging.info(f"Render file saved to: {OUTPUT_FILENAME}")
     

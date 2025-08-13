@@ -3,7 +3,7 @@
 env="MAPPOTraining2v1"
 scenario="2v1/NoWeapon/MAPPOTraining"
 algo="mappo"
-exp="v1_2v1_mappo_render"
+exp="2v1_mappo_400steps_render"
 seed=0
 target_steps=400
 
@@ -22,4 +22,4 @@ CUDA_VISIBLE_DEVICES=0 python renders/render_2v1_mappo.py \
     --output ${exp}.txt.acmi \
     --scenario ${scenario} \
     --target-steps ${target_steps} \
-    --use-latest
+    --use-latest 
